@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: crawler
   name: synergychat-crawler # naming
   labels:
     app: synergychat-crawler #select pods this deployment manages
