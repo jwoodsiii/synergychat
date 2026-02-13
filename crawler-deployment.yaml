@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synergychat-crawler # naming
+  labels:
+    app: synergychat-crawler #select pods this deployment manages
+spec:
+  replicas: 1 # number of pods deployment maintains
+  selector:
+    matchLabels:
+      app: synergychat-crawler # match metadata labels
+  template:
+    metadata:
+      labels:
+        app: synergychat-crawler # labels are important, tells k8s which pod belog to which deployments
+    spec:
+      containers:
+        - name: synergychat-crawler
+          image: bootdotdev/synergychat-crawler:latest # where to pull docker img from
+          envFrom:
+            - configMapRef:
+                name: synergychat-crawler-configmap
